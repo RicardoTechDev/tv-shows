@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+    
+{% block content %} 
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6">
+            <h1>Add a New Show</h1>
+            <form action="{% url 'new_show' %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" aria-describedby="titleHelp">
+                    <div id="titleHelp" class="form-text text-white">Enter the name of the show.</div>
+                </div>
+                <div class="mb-4">
+                    <div class="row">
+                        <div class="col">
+                            <label for="network" class="form-label">Network</label>
+                            <select class="form-control" id="network" name="network">
+                                <option selected>Open this select menu</option>
+                                <option value="Mega">Mega</option>
+                                <option value="TVN">TVN</option>
+                                <option value="Chilevisión">Chilevisión</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="release_date" class="form-label">Release Date</label>
+                            <input type="date" class="form-control" id="release_date" name="release_date">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="description" class="form-check-label">Description</label>
+                    <textarea class="form-control" aria-label="With textarea" id="description" name="description"></textarea>
+                </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+            
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+    
+{% endblock %}

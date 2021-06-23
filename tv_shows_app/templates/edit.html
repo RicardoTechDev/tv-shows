@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+    
+{% block content %} 
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6">
+            <h1>Edit Show {{ show.id }}</h1>
+            <form action="{% url 'edit_show' show.id %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ show.title }}">
+                </div>
+                <div class="mb-4">
+                    <div class="row">
+                        <div class="col">
+                            <label for="network" class="form-label">Network</label>
+                            <select class="form-control" id="network" name="network" value="{{ show.network }}">
+                                <option selected value="Mega">Mega</option>
+                                <option value="TVN">TVN</option>
+                                <option value="Chilevisión">Chilevisión</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="release_date" class="form-label">Release Date</label>
+                            <input type="date" class="form-control" id="release_date" name="release_date" value="{{ release_date }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="description" class="form-check-label">Description</label>
+                    <textarea class="form-control" aria-label="With textarea" id="description" name="description">{{ show.description }}</textarea>
+                </div>
+            <button type="submit" class="btn btn-primary">Updated</button>
+            </form>
+            
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+    
+{% endblock %}
