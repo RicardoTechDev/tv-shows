@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+    
+{% block content %} 
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6">
+            <h1>Add a New Network</h1>
+            <form action="{% url 'new_network' %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp">
+                    <div id="nameHelp" class="form-text text-white">Enter the name of the network.</div>
+                </div>
+                <div class="mb-4">
+                    <label for="description" class="form-check-label">Description</label>
+                    <textarea class="form-control" aria-label="With textarea" id="description" name="description"></textarea>
+                </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+            
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+    
+{% endblock %}

@@ -7,10 +7,10 @@
     </div>
     <div class="col-6">
         <h1>Tv Show {{ show.id }}</h1>
-        <p><b>Title: </b>{{ show.title}}</p>
-        <p><b>Network: </b>{{ show.network}}</p>
-        <p><b>Release Date: </b>{{ show.release_date}}</p>
-        <p><b>Description: </b>{{ show.description }}</p>
+        <p><b>Title: </b><i class="text-white">{{ show.title}}</i></p>
+        <p><b>Network: </b><i class="text-white">{{ show.network.name}}</i></p>
+        <p><b>Release Date: </b><i class="text-white">{{ show.release_date}}</i></p>
+        <p><b>Description: </b><i class="text-white">{{ show.description }}</i></p>
     </div>
     <div class="col-3">
 

@@ -17,10 +17,16 @@
                     <div class="row">
                         <div class="col">
                             <label for="network" class="form-label">Network</label>
-                            <select class="form-control" id="network" name="network" value="{{ show.network }}">
-                                <option selected value="Mega">Mega</option>
-                                <option value="TVN">TVN</option>
-                                <option value="Chilevisión">Chilevisión</option>
+                            <select class="form-control" id="network" name="network">
+                                {% for network in networks %}
+                                    {% if network.id == show.network.id %}
+                                        <option selected value="{{ show.network.id }}">{{ network.name }}</option>
+
+                                    {% else %}
+                                        <option value="{{ network.id }}">{{ network.name }}</option>
+                                    
+                                    {% endif %}
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="col">

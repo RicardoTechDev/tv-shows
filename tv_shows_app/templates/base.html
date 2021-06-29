@@ -7,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/bootstrap.bundle.min.js' % }"></script>
     <link rel="stylesheet" href="{% static 'bootstrap-icons/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/toastr.min.css' %}">
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/toastr.min.js' %}"></script>
     <title>Tv Shows</title>
 </head>
 <body>
@@ -23,11 +26,30 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="{% url 'new_show' %}">New Show</a>
+                                
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{% url 'home' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Shows
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'home' %}">All Shows</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'new_show' %}">New Show</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{% url 'networks' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Networks
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'networks' %}">All Networks</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'new_network' %}">New Network</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Edit Network</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -36,12 +58,43 @@
         </header>
         <main>
             {% block content %} 
-
             {% endblock %}
         </main>
         <footer>
             
         </footer>
-    </div>
+    </div> 
+    
+    <script>
+        $(document).ready(function(){
+            toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+            }
+
+            {% if messages %}
+                {% for message in messages %}
+                    toastr.{{ message.tags }}("{{message}}");
+                {% endfor %}
+            {% endif %}
+
+            {% block script %} {% endblock %}
+        });
+
+        //https://codeseven.github.io/toastr/
+    </script>
 </body>
 </html>
